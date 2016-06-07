@@ -10,6 +10,7 @@ class sale_order(models.Model):
     total_confirm_sale = fields.Float(string='Total Sale Value')
     order_details = fields.Html('Quotation Details')
     templete_id = fields.Many2one('sale.order', 'Chose Templete', domain="[('is_templete', '=', True)]")    
+    payment_company_id = fields.Char(string='Mother Company', related='partner_id.x_mother_company_id.name')
     @api.onchange('templete_id')
     def _onchange_is_templete(self):
         if self.templete_id:
